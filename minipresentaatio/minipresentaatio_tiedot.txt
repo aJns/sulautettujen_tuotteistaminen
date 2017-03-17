@@ -1,0 +1,69 @@
+Työn aihe
+Vahvistusoppimisen sovellukset langattomissa verkoissa ja sen vaikutukset tuotekehityksessä
+
+------------------------------------------------------------------------------
+lähde 1
+Anju Arya, Amita Malik, and Sanjay Kumar. 2015. A Routing Protocol for
+Detecting Holes in Wireless Sensor Networks with Multiple Sinks. In Proceedings
+of the Third International Symposium on Women in Computing and Informatics (WCI
+'15), Indu Nair (Ed.). ACM, New York, NY, USA, 103-108. DOI:
+http://dx.doi.org/10.1145/2791405.2791480
+
+------------------------------------------------------------------------------
+lähde 2
+Bin Yu, Paul Scerri, Katia Sycara, Yang Xu, and Michael Lewis. 2006. Scalable
+and reliable data delivery in mobile ad hoc sensor networks. In Proceedings of
+the fifth international joint conference on Autonomous agents and multiagent
+systems (AAMAS '06). ACM, New York, NY, USA, 1071-1078.
+DOI=http://dx.doi.org/10.1145/1160633.1160825
+
+------------------------------------------------------------------------------
+Kerro tässä kirjallisuustyön perimmäinen idea, esim.
+* lähestymistapojen vertailu
+* uusi tutkimussuunta
+* vaihtoehtoiset näkemykset
+* näkökulmien väliset suhteet
+* sovellusalojen vertailu
+
+Uusi tutkimus ja lähestymistapojen vertailu, eli katsotaan miten tämä uusi tapa
+optimoida verkkoja toimii käytännössä ja kuinka se vaikuttaa tuotekehitykseen.
+
+------------------------------------------------------------------------------
+Luettele 2-5 avainkäsitettä. Anna jokaisesta käsitteestä sen nimi, määritelmä
+ja lähdeartikkeli. Lähdeartikkeliin riittää viittaus esim. Harvard-muodossa,
+mikäli artikkelin viitetiedot ovat edellisessä kohdassa.
+
+
+Reinforcement learning:
+
+"
+‘Reinforcement learning is learning what to do – how to map situations to
+actions – so as to maximize a numerical reward signal’
+
+Reinforcement learning typically divides a problem into four parts: (1) a
+policy; (2) a reward function; (3) a value function; and (4) an internal model
+of the environment.
+"
+
+Sutton, Richard S., and Andrew G. Barto.  Reinforcement learning: An
+introduction. Vol. 1. No. 1. Cambridge: MIT press, 1998. (s.)
+
+
+Wireless sensor network:
+"
+A wireless sensor network (WSN) is a collection of autonomous sensors densely
+deployed in a structured or unstructured manner to monitor physical environment
+and collect relevant information and cooperatively transfer it through the
+network to the sink via intermediate sensor nodes
+"
+
+Anju Arya, Amita Malik, and Sanjay Kumar, 2015.
+
+
+------------------------------------------------------------------------------
+Misc notes:
+Muista, että vahvistusoppiminen pitää selittää jollain tasolla muille työsi
+lukijoille.
+
+Harjoitustyössäsi keskity papereiden selittämiseen niin, että erityisesti tulee
+selväksi se, mitä valintoja ja tarpeita ne aiheuttavat tuotekehitykseen.

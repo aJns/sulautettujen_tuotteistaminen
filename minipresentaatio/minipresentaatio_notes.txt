@@ -1,0 +1,17 @@
+* Langattomissa (anturi)verkoissa reitityksen optimointi parantaa suorituskykyä
+  sekä vähentää virrankulutusta. On myös hyödyllistä havaita verkon "reikiä"
+  ja ottaa ne huomioon verkon optimoinnissa.
+
+* Vahvistusoppiminen on ns "reaaliaikaisesti" tapahtuvaa koneoppimista (on
+  kutsuttu myös robottioppimiseksi)
+
+* On jo paljon algoritmejä langattomien verkkojen reitittämiseen
+    * Ne eivät kuitenkaan sovi anturiverkkoihin niiden korkean latenssin ja
+      suuren liikenteen takia
+
+* Ehdotus järjestelmästä joka oppii reitittämään dataa vain lokaalin tietonsa
+  perusteella
+    * Hyvä erityisesti liikkuvien (UAV/dronet etc) anturien verkoissa
+
+* ainakin toinen papereista käsittelee Q-learningiin perustuvaa algoritmiä
+
