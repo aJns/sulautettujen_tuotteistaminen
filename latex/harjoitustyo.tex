@@ -6,6 +6,10 @@
 \usepackage{graphicx}
 \usepackage{fullpage}
 
+% font
+\usepackage{avant}
+\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+
 \graphicspath{{../kuvat/}}
 \usepackage[style=ieee]{biblatex}
 \bibliography{sulautettujen-tuotteistaminen}
@@ -19,6 +23,8 @@ vaikutukset tuotekehityksessä}
 \maketitle
 
 % include/input sections here
+\input{johdanto}
+\input{yhteenveto}
 
 \printbibliography{}
 \end{document}
