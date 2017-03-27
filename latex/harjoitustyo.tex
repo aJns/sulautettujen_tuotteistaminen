@@ -2,16 +2,17 @@
 
 \usepackage[finnish]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage[sfdefault]{noto}
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
 \usepackage{fullpage}
 
-% font
-\usepackage{avant}
-\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+% testing
+\usepackage{blindtext}
+\usepackage{todo}
 
 \graphicspath{{../kuvat/}}
-\usepackage[style=ieee]{biblatex}
+\usepackage[style=draft]{biblatex}
 \bibliography{sulautettujen-tuotteistaminen}
 
 \author{Jonas Nikula, 240497}
@@ -22,9 +23,15 @@ vaikutukset tuotekehityksessä}
 \begin{document}
 \maketitle
 
+\input{tiivistelma}
+
 % include/input sections here
 \input{johdanto}
+\input{maaritelmat}
+\input{selvitys}
 \input{yhteenveto}
 
 \printbibliography{}
+
+\todos{}
 \end{document}
