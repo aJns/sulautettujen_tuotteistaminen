@@ -6,3 +6,6 @@ harjoitustyo.pdf
 *.blg
 *.log
 *.run.xml
+
+*.swp
+*.swo
