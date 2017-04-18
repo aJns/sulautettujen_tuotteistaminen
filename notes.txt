@@ -1,0 +1,45 @@
+# Arya2015
+
+- Käsittelee reititysalgoritmia joka tunnistaa "reiät" verkossa, ja optimoi
+  verkon toimimaan ne huomioon ottaen.
+    - Artikkeli käsittelee ryhmälähetystä käyttäviä verkkoja joissa on useita
+      nieluja [datalle]
+
+- 2. kappaleessa on listattu erilaisia reititysalgoritmeja. Artikkelin mukaan
+  mikään niistä ei kuitenkaan sovi joka tilanteeseen.
+    
+- 3. kappaleessa luodaan malli tilanteesta (verkosta) ja ongelmasta
+    - tätä mallia käytetään vahvistusoppimisessa: jokainen anturinode on
+      agentti, reitityspäätökset actioneita, naapurinodet environment ja eri
+      reittien "hinnan" päivittäminen learning
+    - Q-arvo on reitin "hinta"
+    - Aina kun node lähettää dataa, se saa vastaanottajalta feedbackia reitin
+      laadusta, jonka avulla se voi päivittää Q-arvoa, eli oppia
+
+- Reikäongelma: Kuolleiden nodejen löytäminen
+    - Nodekuoleman yleisimpiä syitä:
+        - anturin viottuminen (noden tuhoutuminen)
+        - maantieteelliset tms aiheuttamat esteet
+        - nodejen alhainen tiheys
+
+- Ehdotettu protokolla:
+  - Ensin etsitään optimaalinen reititys koko verkolle
+  - sitten etsitään reikiä ja mukautetaan reititys reikäiselle verkolle
+
+- hintafunktio ottaa huomioon monia muuttujia, mutta tärkeimmät ovat
+  - "hyppyjen" lkm (hyppy=siirtyminen nodesta toiseen)
+  - noden lataus, jos akku on lopussa => kalliimpi reitti
+
+- Lopputuloksena näyttäisi olevan että ehdotettu protokolla on toimiva, ja pystyy käsittelemään
+  liikkuvia nieluja ja nodekuolemia, ja havaitsemaan reikiä verkossa
+
+
+# Yu2006
+
+- Käsittelee reititysalgoritmia, jonka tarkoitus on optimoida datan kerääminen
+  relevanteille nodeille.
+    - Esimerkkinä drone verkko, joka havannoi ympäristöä. Havaitessaan
+      "tapahtuman", drone lähettää tiedon eteenpäin. Nodet tietävät vain
+      naapurinsa. Tarkoitus on että tieto "tapahtumasta" siirtyisi nodelle
+      jolla on ennestään tietoa tapahtumasta. Siksi nodet lähettävät
+      samankaltaiset tapahtumat aina samalle nodelle.
