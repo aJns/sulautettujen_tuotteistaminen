@@ -38,7 +38,7 @@
 
 - Käsittelee reititysalgoritmia, jonka tarkoitus on optimoida datan kerääminen
   relevanteille nodeille.
-    - "Datan fuusio"
+    - "Multisensor data fusion"
     - Käsitellään pääasiassa verkkoja jotka muuttuvat (mobiilit nodet), ja
       joissa yksittäisillä nodeilla on vähän dataa verkosta (naapurit tiedetään)
 
