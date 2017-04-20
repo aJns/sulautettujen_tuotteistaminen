@@ -23,12 +23,12 @@
         - nodejen alhainen tiheys
 
 - Ehdotettu protokolla:
-  - Ensin etsitään optimaalinen reititys koko verkolle
-  - sitten etsitään reikiä ja mukautetaan reititys reikäiselle verkolle
+    - Ensin etsitään optimaalinen reititys koko verkolle
+    - sitten etsitään reikiä ja mukautetaan reititys reikäiselle verkolle
 
 - hintafunktio ottaa huomioon monia muuttujia, mutta tärkeimmät ovat
-  - "hyppyjen" lkm (hyppy=siirtyminen nodesta toiseen)
-  - noden lataus, jos akku on lopussa => kalliimpi reitti
+    - "hyppyjen" lkm (hyppy=siirtyminen nodesta toiseen)
+    - noden lataus, jos akku on lopussa => kalliimpi reitti
 
 - Lopputuloksena näyttäisi olevan että ehdotettu protokolla on toimiva, ja pystyy käsittelemään
   liikkuvia nieluja ja nodekuolemia, ja havaitsemaan reikiä verkossa
@@ -38,8 +38,39 @@
 
 - Käsittelee reititysalgoritmia, jonka tarkoitus on optimoida datan kerääminen
   relevanteille nodeille.
-    - Esimerkkinä drone verkko, joka havannoi ympäristöä. Havaitessaan
-      "tapahtuman", drone lähettää tiedon eteenpäin. Nodet tietävät vain
-      naapurinsa. Tarkoitus on että tieto "tapahtumasta" siirtyisi nodelle
-      jolla on ennestään tietoa tapahtumasta. Siksi nodet lähettävät
-      samankaltaiset tapahtumat aina samalle nodelle.
+    - "Datan fuusio"
+    - Käsitellään pääasiassa verkkoja jotka muuttuvat (mobiilit nodet), ja
+      joissa yksittäisillä nodeilla on vähän dataa verkosta (naapurit tiedetään)
+
+- Introssa mainitaan että monen nielun anturiverkkoihin on kehitetty mm.
+  reaktiivisia reititysprotokollia
+    - Reaktiivinen protokolla tarkoittaa että nielu lähettää verkkoon (yleensä
+      kohdistettuna tietylle alueelle) pyynnön datasta, ja anturit lähettävät
+      optimaalista reittiä pitkin datan nielulle
+    - Nämä protokollat ovat kuitenkin tarkoitettu mikroanturiverkoille, joissa
+      verkko on staattinen deploymentin jälkeen. Ne eivät sovi mobiileille
+      verkoille koska:
+        - Suuri liiikenne: Koska nodet eivät tiedä verkon muotoa reititys
+          reaktiivisilla protokollilla vaatisi liian suurta metadataliikennettä
+        - Pitkä latenssi: Nielut eivät tiedä milloin nodeilla on dataa, joten
+          nielun datapyyntöjen odottaminen hidastaa datan lähetystä antureilta
+
+- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
