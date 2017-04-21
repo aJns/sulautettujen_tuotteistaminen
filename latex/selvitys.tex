@@ -16,14 +16,23 @@ yksittäisellä UAV:lla on matala varmuus kokonaistilanteesta. Datafuusio on
 tärkeää jotta verkolla on vahva käsitys tilanteesta jonka avulla se voi
 suunnitella toimintaansa.
 
-Anturiverkon osien, eli "nodejen" kuolemat ovat ongelma jonka verkon täytyy
+Anturiverkon osien, eli ``nodejen'' kuolemat ovat ongelma jonka verkon täytyy
 pystyä kestämään ja käsittelemään. Kuolema tarkoittaa tässä kontekstissa mitä
 tahansa tilannetta jossa node on toimintakyvytön tai sen toimintakyky on niin
 huono että siitä ei ole hyötyä verkossa. Artikkelissa~\cite{Arya2015} esitelty
-algoritmi pyrkii etsimään nodejen kuolemista syntyviä "reikiä" ja reitittämään
+algoritmi pyrkii etsimään nodejen kuolemista syntyviä ``reikiä'' ja reitittämään
 data optimaalisesti ne huomioon ottaen.
+
+\subsection{Muita anturiverkkojen reititysalgoritmeja}
+\TODO{Kerro joistain muista reititysprotokollista, ja siitä miksi ne eivät
+sovellu kuitenkaan tässä esitettyihin ongelmiin}
 
 \subsection{Artikkeleiden tarjoamat ratkaisut}
 \TODO{Selitä tarkasti miten em ongelma ratkaistaan}
+
+Kummatkin artikkelit siis ryhtyvät ratkaisemaan anturiverkkojen tiedonsiirron
+reitityksen optimointia. Molemmat myös pyrkivät löytämään nopeita ja
+luotettavia yhteyksiä nodejen väleille. Ensimmäinen kuitenkin pyrkii pääasiassa
+etsimään verkon reikiä ja toinen pyrkii optimoimaan datafuusiota.
 
 
