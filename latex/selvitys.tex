@@ -3,6 +3,26 @@
 \subsection{Artikkeleiden keskeiset ongelmat}
 \TODO{Selitä tarkasti mitä ongelmaa artikkelit ryhtyvät ratkaisemaan}
 
+Anturiverkkojen toimintaolosuhteista johtuen verkon yhteydet ovat muuttuvia ja
+ennalta-arvaamattomia. Usein verkon yksittäisillä antureilla ei ole tietoa
+verkon koostumuksesta sen välittömien naapureiden lisäksi. Siksi
+reititysprotokollien täytyy pystyä sopeutumaan muuttuviin tilanteisiin
+mahdollisimman vähällä informaatiolla itse verkosta.
+
+Artikkelissa~\cite{Yu2006} keskeistä on anturien keräämän datan fuusio.
+Datafuusio tarkoittaa toisiinsa liittyvän datan liittämistä yhteen. Artikkeli
+käyttää esimerkkinä UAV:sta koostuvaa anturiverkkoa, joissa jokaisella
+yksittäisellä UAV:lla on matala varmuus kokonaistilanteesta. Datafuusio on
+tärkeää jotta verkolla on vahva käsitys tilanteesta jonka avulla se voi
+suunnitella toimintaansa.
+
+Anturiverkon osien, eli "nodejen" kuolemat ovat ongelma jonka verkon täytyy
+pystyä kestämään ja käsittelemään. Kuolema tarkoittaa tässä kontekstissa mitä
+tahansa tilannetta jossa node on toimintakyvytön tai sen toimintakyky on niin
+huono että siitä ei ole hyötyä verkossa. Artikkelissa~\cite{Arya2015} esitelty
+algoritmi pyrkii etsimään nodejen kuolemista syntyviä "reikiä" ja reitittämään
+data optimaalisesti ne huomioon ottaen.
+
 \subsection{Artikkeleiden tarjoamat ratkaisut}
 \TODO{Selitä tarkasti miten em ongelma ratkaistaan}
 
