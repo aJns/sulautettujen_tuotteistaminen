@@ -1,38 +1,41 @@
-Käsiteltävät aiheet, ongelmat, metodit ja vertailut
+Käsiteltävät aiheet:
 
-
-Anturiverkot ovat kasvava ja kehittyvä ilmiö
-Eivät tarkoita enää staattisia antureita
-Ovat usein liikkuvia, muuttuvia
-Eivät ole vain antureita, vaan antureita on liitetty erilaisiin koneisiin tai ihmisiin
-Keräävät entistä enemmän dataa
-  Data täytyy reitittää ja käsitellä
-  Käsittelyn avainsanoja: distributed computing & machine learning
-
-Toimivat monenlaisissa olosuhteissa, myös huonoissa
-  lika, sääilmiöt
-  maantieteelliset esteet
-  vihamieliset toimijat
-
-Haasteena: Datan reititys tehokkaasti, luotettavasti ja nopeasti sinne missä sitä tarvitaan
-  Vaikka verkon nodet liikkuvat tai niitä kuolisi
-
-Ratkaisuna vahvistusoppiminen?
-  Tarkastelluissa artikkeleissa menetelmänä pääasiassa Q-learning
-    Ei vaadi mallia ympäristöstä
-    Vaan oppii optimaalisen toimintatavan
-    Käyttää tähän "action-value" funktiota, joka kertoo mikä jonkun toiminnan hinta ja hyöty on
-    Ottaa huomioon myös tulevat tilanteet
-    action-value funktio voidaan toteuttaa monilla tavoin, vaikkapa neuroverkkona
-    Aluksi kaikkien toimintojen hinta kaikissa tilanteissa on joku oletusarvo
-    Kun toimija/oppija (vaikka drone) tekee jotakin, toiminnan hinta (Q-arvo) päivitetään
-
-[3] artikkelissa keskitytään löytämään nopein ja luotettavin reitti siirtää dataa nielulle.
-  Q-arvoon vaikuttaa pääasiassa linkin laatu
-
-[4] artikkelissa pyritään optimoimaan "datafuusiota"
-  datafuusio tarkoittaa yhteenliittyvän datan yhdistämistä
-  Algoritmin perusidea on lähettää samankaltainen data samalle naapurille
-  Samalla kuitenkin opitaan naapureiden luotettavuus
-
-
+- Anturiverkot ovat kasvava ilmiö.
+- Eivät tarkoita enää staattisia antureita
+  - Ovat usein liikkuvia, muuttuvia
+  - Eivät ole vain antureita, vaan antureita on liitetty erilaisiin koneisiin
+    tai ihmisiin
+- Keräävät entistä enemmän dataa
+  - Data täytyy reitittää ja käsitellä
+  - distributed computing & machine learning
+- Toimivat monenlaisisissa olosuhteissa
+  - Täytyy toimia myös huonoissa olosuhteissa
+    - lika, sääilmiöt
+    - maantieteelliset esteet
+    - vihamieliset toimijat
+  - Koko- ja tehonkulutusvaatimukset rajoittavat ratkaisuja
+- Haasteena:
+  - Datan reititys tehokkaasti, luotettavasti ja nopeasti sinne missä sitä
+    tarvitaan
+  - Verkon mukautuvuus ja kestävyys
+    - Vaikka verkon nodet liikkuvat
+    - Vaikka nodeja kuolisi
+- Ratkaisuna vahvistusoppiminen
+  - Tarkastelluissa artikkeleissa pääasiassa Q-learning
+    - Ei vaadi mallia ympäristöstä
+    - Vaan oppii optimaalisen toimintatavan
+    - Käyttää tähän "action-value" funktiota, joka kertoo mikä jonkun toiminnan
+      hinta ja hyöty on
+      - Ottaa huomioon myös tulevat tilanteet
+      - action-value funktio voidaan toteuttaa monilla tavoin, vaikkapa
+        neuroverkkona
+    - Aluksi kaikkien toimintojen hinta kaikissa tilanteissa on joku oletusarvo
+      - Kun toimija/oppija (vaikka drone) tekee jotakin, toiminnan hinta
+        (Q-arvo) päivitetään
+- Arya2015 artikkelissa keskitytään löytämään nopein ja luotettavin reitti
+  siirtää dataa nielulle.
+    - Q-arvoon vaikuttaa pääasiassa linkin laatu
+- Yu2006 artikkelissa pyritään optimoimaan "datafuusiota"
+  - datafuusio tarkoittaa yhteenliittyvän datan yhdistämistä
+  - Artikkelissa pyritään reitittämään samankaltainen data samalle nielulle
+  - Tässäkin luotettavuus ja nopeus/tehokkuus on tärkeää
