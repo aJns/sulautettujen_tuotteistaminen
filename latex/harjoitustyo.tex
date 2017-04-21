@@ -7,13 +7,18 @@
 \usepackage{graphicx}
 \usepackage{fullpage}
 
+
 % testing
 \usepackage{blindtext}
-\usepackage{todo}
+\usepackage{color}
+\usepackage{soulutf8}
 
 \graphicspath{{../kuvat/}}
 \usepackage[style=draft]{biblatex}
 \bibliography{sulautettujen-tuotteistaminen}
+
+
+\newcommand{\TODO}[1]{\hl{\textbf{TODO:}\quad#1}}
 
 \author{Jonas Nikula, 240497}
 \title{Vahvistusoppimisen sovellukset langattomissa anturiverkoissa ja sen
@@ -33,5 +38,4 @@ vaikutukset tuotekehityksessä}
 
 \printbibliography{}
 
-\todos{}
 \end{document}
