@@ -1,5 +1,4 @@
 \section{Modernien anturiverkkojen tiedonsiirto-ongelmat}
-\TODO{Selitä tarkasti mitä ongelmaa artikkelit ryhtyvät ratkaisemaan}
 
 Anturiverkkojen toimintaolosuhteista johtuen verkon yhteydet ovat muuttuvia ja
 ennalta-arvaamattomia. Usein verkon yksittäisillä antureilla ei ole tietoa
@@ -7,10 +6,18 @@ verkon koostumuksesta sen välittömien naapureiden lisäksi. Siksi
 reititysprotokollien täytyy pystyä sopeutumaan muuttuviin tilanteisiin
 mahdollisimman vähällä informaatiolla itse verkosta.
 
+Huomio anturiverkon reitityksen termeistä: Tämän selvityksen lähteissä
+käytetään myös usein termiä ``node'' kuvaaman verkon jäseniä. Node on
+reitityksestä puhuessa parempi termi kuin anturi, koska anturiverkoissa on
+yleensä antureiden lisäksi muitakin reititykseen osallistuvia laitteita.
+Reitityksessä ei myöskään ole yleensä väliä onko kyseessä anturi vai joku muu
+palikka.
+
 Ensimmäinen artikkeli keskittyy anturiverkkojen keräämän datan tehokkaaseen
 yhdistämiseen, eli datafuusioon. Toinen taas pyrkii kehittämään
 reititysprotokollan joka on robusti ja pystyy mukautumaan antureiden
-tuhoutumisesta johtuviin muutoksiin.
+tuhoutumisesta johtuviin muutoksiin. Anturiverkon määritelmässä sanottiin että
+verkko koostuu toisiinsa yhdistetyistä antureista.
 
 \subsection{Datafuusio}
 Artikkelissa~\cite{Yu2006} keskeistä on anturien keräämän datan fuusio.
@@ -33,19 +40,21 @@ huono että siitä ei ole hyötyä verkossa. Artikkelissa~\cite{Arya2015} esitel
 algoritmi pyrkii etsimään nodejen kuolemista syntyviä ``reikiä'' ja reitittämään
 data optimaalisesti ne huomioon ottaen.
 
+\TODO{Ehkä yksi kappale lisää tähän? Tai jos ei niin sitten yhdistä toiseen
+sektioon}
+
 \subsection{Muita anturiverkkojen reititysalgoritmeja}
 \TODO{Kerro joistain muista reititysprotokollista, ja siitä miksi ne eivät
 sovellu kuitenkaan tässä esitettyihin ongelmiin}
 
 \section{Vahvistumisoppiminen anturiverkojen tiedonsiirrossa}
-\TODO{Selitä tarkasti miten em ongelma ratkaistaan vahvistusoppimista käyttäen}
 
 Kummatkin artikkelit siis ryhtyvät ratkaisemaan anturiverkkojen tiedonsiirron
 reitityksen optimointia. Molemmat myös pyrkivät löytämään nopeita ja
 luotettavia yhteyksiä nodejen väleille. Ensimmäinen kuitenkin pyrkii pääasiassa
 etsimään verkon reikiä ja toinen pyrkii optimoimaan datafuusiota.
 
-\TODO{Mitä vahvistusoppiminen on?}
+\TODO{Mitä vahvistusoppiminen ja tarkemmin sanottuna Q-learning on?}
 
 \subsection{Datan tehokas yhdistäminen vahvistusoppimisen avulla}
 
@@ -56,16 +65,9 @@ tapahtumasta, se lähettää sen satunnaiselle naapurille eteenpäin. Kun se saa
 samasta tapahtumasta lisää dataa, se lähettää sen eteenpäin sille naapurille
 jolle se viimeksi lähetti dataa kyseisestä tapahtumasta.  Tapahtuman ja datan
 samankaltaisuuden tai liittyvyyden määrittely on oma ongelmansa johon
-artikkelissa~\cite{Yu2006} ei oteta kantaa. Vaikka kyseinen algoritmi edistää
-datafuusiota melko tehokkaasti ilman kattavaa tietoa anturiverkosta, sen
-ongelmana on että se ei ota huomioon verkon yhteyksien laatua, tai edes sitä
-meneekö tieto perille. Eli se pyrkii lähettämään dataa samalle naapurille
-vaikka yhteys olisi huono tai jopa olematon. Ongelma voidaan korjata
-lähettämällä data uudestaan jos vikoja tai huonoja yhteyksia havaitaan
-verkossa. Uudelleenlähetys kuitenkin laskee algoritmin tehokkuutta melko
-paljon, koska uuden naapurin valinta on satunnaista jolloin data saatetaan
-lähettää uudestaan vialliselle naapurille, tai muuten epäoptimaaliselle
-naapurille.
+artikkelissa~\cite{Yu2006} ei oteta kantaa. Algoritmin ideana on että jos data
+reititetään aina samaa reittiä pitkin, todennäköisyys että jollekin reitin
+nodelle tulee tarpeeksi dataa kasvaa.
 
 \begin{figure}[h]
   \centering
@@ -75,7 +77,30 @@ naapurille.
 \label{fig:yu2006}
 \end{figure}
 
+Vaikka kyseinen algoritmi edistää datafuusiota melko tehokkaasti ilman kattavaa
+tietoa anturiverkosta, sen ongelmana on että se ei ota huomioon verkon
+yhteyksien laatua, tai edes sitä meneekö tieto perille. Eli se pyrkii
+lähettämään dataa samalle naapurille vaikka yhteys olisi huono tai jopa
+olematon. Ongelma voidaan korjata lähettämällä data uudestaan jos vikoja tai
+huonoja yhteyksia havaitaan verkossa. Uudelleenlähetys kuitenkin laskee
+algoritmin tehokkuutta melko paljon, koska uuden naapurin valinta on
+satunnaista jolloin data saatetaan lähettää uudestaan vialliselle naapurille,
+tai muuten epäoptimaaliselle naapurille.
+
+Tehokkuutta voidaan parantaa mallintamalla naapureiden luotettavuutta jollain
+tavalla. Tässä päästäänkin artikkelin~\cite{Yu2006} keskeiseen algoritmiin,
+jota tekijät itse kutsuvat ``path learning'' algoritmiksi. Perusidea datan
+yhdistämisen kannalta on sama kuin path reinforcementissa; Samankaltainen data
+pyritään reitittämään samaa reittiä pitkin, jotta todennäköisyys että data
+päätyy samalle nodelle on korkeampi. Algoritmi käyttää kuitenkin
+vahvistusoppimista hyväkseen opettemalla nodeille toiminnan myötä mitkä
+naapurit pystyvät luotettavimmin lähettämään dataa myös eteenpäin.
+
+\TODO{Lisää selitystä path learningista}
+
 \subsection{Vahvistusoppimisen hyödyntäminen sopeutuvassa anturiverkossa}
+
+\TODO{Selitystä Arya2015 tekstistä}
 
 \begin{figure}[h]
   \centering
