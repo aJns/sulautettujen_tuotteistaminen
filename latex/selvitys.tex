@@ -6,13 +6,6 @@ verkon koostumuksesta sen välittömien naapureiden lisäksi. Siksi
 reititysprotokollien täytyy pystyä sopeutumaan muuttuviin tilanteisiin
 mahdollisimman vähällä informaatiolla itse verkosta.
 
-Huomio anturiverkon reitityksen termeistä: Tämän selvityksen lähteissä
-käytetään myös usein termiä ``node'' kuvaaman verkon jäseniä. Node on
-reitityksestä puhuessa parempi termi kuin anturi, koska anturiverkoissa on
-yleensä antureiden lisäksi muitakin reititykseen osallistuvia laitteita.
-Reitityksessä ei myöskään ole yleensä väliä onko kyseessä anturi vai joku muu
-palikka.
-
 Ensimmäinen artikkeli keskittyy anturiverkkojen keräämän datan tehokkaaseen
 yhdistämiseen, eli datafuusioon. Toinen taas pyrkii kehittämään
 reititysprotokollan joka on robusti ja pystyy mukautumaan antureiden
@@ -28,17 +21,17 @@ tärkeää jotta verkolla on vahva käsitys tilanteesta jonka avulla se voi
 suunnitella toimintaansa.
 
 Datafuusio toimii niin että toisiinsa liittyvä data koitetaan kerätä yhteen.
-Verkon nodet lähettävät dataa eteenpäin kunnes jollakin nodella on tarpeeksi
+Verkon solmut lähettävät dataa eteenpäin kunnes jollakin solmulla on tarpeeksi
 paljon dataa, jolloin se lopettaa datan eteenpäinlähetyksen ja rupeaa
 prosessoimaan dataa ja tekemään sen avulla päätöksiä.
 
 \subsection{Luotettava tiedonsiirto anturiverkoissa}
-Anturiverkon osien, eli ``nodejen'' kuolemat ovat ongelma jonka verkon täytyy
-pystyä kestämään ja käsittelemään. Kuolema tarkoittaa tässä kontekstissa mitä
-tahansa tilannetta jossa node on toimintakyvytön tai sen toimintakyky on niin
-huono että siitä ei ole hyötyä verkossa. Artikkelissa~\cite{Arya2015} esitelty
-algoritmi pyrkii etsimään nodejen kuolemista syntyviä ``reikiä'' ja reitittämään
-data optimaalisesti ne huomioon ottaen.
+Anturiverkon solmujen kuolemat ovat ongelma jonka verkon täytyy pystyä
+kestämään ja käsittelemään. Kuolema tarkoittaa tässä kontekstissa mitä tahansa
+tilannetta jossa solmu on toimintakyvytön tai sen toimintakyky on niin huono
+että siitä ei ole hyötyä verkossa. Artikkelissa~\cite{Arya2015} esitelty
+algoritmi pyrkii etsimään solmujen kuolemista syntyviä ``reikiä'' ja
+reitittämään data optimaalisesti ne huomioon ottaen.
 
 \TODO{Ehkä yksi kappale lisää tähän? Tai jos ei niin sitten yhdistä toiseen
 sektioon}
@@ -51,8 +44,8 @@ sovellu kuitenkaan tässä esitettyihin ongelmiin}
 
 Kummatkin artikkelit siis ryhtyvät ratkaisemaan anturiverkkojen tiedonsiirron
 reitityksen optimointia. Molemmat myös pyrkivät löytämään nopeita ja
-luotettavia yhteyksiä nodejen väleille. Ensimmäinen kuitenkin pyrkii pääasiassa
-etsimään verkon reikiä ja toinen pyrkii optimoimaan datafuusiota.
+luotettavia yhteyksiä solmujen väleille. Ensimmäinen kuitenkin pyrkii
+pääasiassa etsimään verkon reikiä ja toinen pyrkii optimoimaan datafuusiota.
 
 \TODO{Mitä vahvistusoppiminen ja tarkemmin sanottuna Q-learning on?}
 
@@ -84,13 +77,13 @@ jolle se viimeksi lähetti dataa kyseisestä tapahtumasta.  Tapahtuman ja datan
 samankaltaisuuden tai liittyvyyden määrittely on oma ongelmansa johon
 artikkelissa~\cite{Yu2006} ei oteta kantaa. Algoritmin ideana on että jos data
 reititetään aina samaa reittiä pitkin, todennäköisyys että jollekin reitin
-nodelle tulee tarpeeksi dataa kasvaa.
+solmulle tulee tarpeeksi dataa kasvaa.
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.8\linewidth]{yu2006_kuva}
   \caption{Havainnekuva siitä kuinka ``path reinforcement'' algoritmi pyrkii
-    lähettämään toisiinsa liittyvän datan samalle nodelle.~\parencite{Yu2006}}
+    lähettämään toisiinsa liittyvän datan samalle solmulle.~\parencite{Yu2006}}
 \label{fig:yu2006}
 \end{figure}
 
@@ -109,8 +102,8 @@ tavalla. Tässä päästäänkin artikkelin~\cite{Yu2006} keskeiseen algoritmiin
 jota tekijät itse kutsuvat ``path learning'' algoritmiksi. Perusidea datan
 yhdistämisen kannalta on sama kuin path reinforcementissa; Samankaltainen data
 pyritään reitittämään samaa reittiä pitkin, jotta todennäköisyys että data
-päätyy samalle nodelle on korkeampi. Algoritmi käyttää kuitenkin
-vahvistusoppimista hyväkseen opettemalla nodeille toiminnan myötä mitkä
+päätyy samalle solmulle on korkeampi. Algoritmi käyttää kuitenkin
+vahvistusoppimista hyväkseen opettemalla solmuille toiminnan myötä mitkä
 naapurit pystyvät luotettavimmin lähettämään dataa myös eteenpäin.
 
 \TODO{Lisää selitystä path learningista}
@@ -122,11 +115,11 @@ naapurit pystyvät luotettavimmin lähettämään dataa myös eteenpäin.
 Kuten datafuusiossa, myös artikkelissa~\cite{Arya2015} käytetään hyväksi
 vahvistusoppimista tehokkaan reititysprotokollan luomiseksi. Kuten datafuusioon
 keskittyvän algoritmin kanssa, sopeutuvan reitityksen algoritmi pyrkii
-huomioimaan noden naapureiden luotettavuutta. Kyseinen algoritmi ottaa
+huomioimaan solmun naapureiden luotettavuutta. Kyseinen algoritmi ottaa
 kuitenkin myös huomioon muita muuttujia, kuten vastaanottajan akkutilanteen.
 Lisäksi tässä algoritmissa otetaan huomioon koko reitti päämäärään asti, ei
 ainoastaan hyppy naapurille. Myös tässä algoritmissa vastaanottajan ``hyvyys''
-määräytyy sen antaman palautteen mukaan. Yhden noden oppiminen voidaan siis
+määräytyy sen antaman palautteen mukaan. Yhden solmun oppiminen voidaan siis
 kuvata tapahtumaketjuna, jossa se
 \begin{enumerate}
   \item Valitsee naapureistaan vastaanottajan niiden Q-arvon perusteella
@@ -145,7 +138,7 @@ toiminnasta.
 \end{figure}
 
 Artikkelissa on myös simuloitu algoritmin toimintaa ja suorituskykyä.
-Kuvassa~\ref{fig:arya2015} näkyy simuloitu tilanne, jossa osa nodeista on
+Kuvassa~\ref{fig:arya2015} näkyy simuloitu tilanne, jossa osa solmuista on
 ``kuollut''. Kuollut alue näkyy mustana.
 
 \begin{figure}[h]
