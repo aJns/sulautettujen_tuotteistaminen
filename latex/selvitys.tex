@@ -56,6 +56,23 @@ etsimään verkon reikiä ja toinen pyrkii optimoimaan datafuusiota.
 
 \TODO{Mitä vahvistusoppiminen ja tarkemmin sanottuna Q-learning on?}
 
+Vahvistusoppiminen blaa
+
+``Q-learning'' tai Q-oppiminen on yksi vahvistusoppimisen menetelmä. Menetelmä
+ei vaadi tarkkaa mallia ympäristöstä, ja siten soveltuu lähes mihin tahansa
+vahvistusoppimisongelmaan. Q-oppimisisessa on kolme komponenttia
+\begin{description}
+  \item[Agent, toimija] 
+  \item[Action, toiminta] 
+  \item[Environment, ympäristö] 
+\end{description}
+
+Kaikilla toiminnoilla on joku hinta. Q-oppimisessa tätä hintaa kuvaa Q-arvo.
+Q-arvo on matemaattisesti toiminnan hinta, mutta se kuvaa myös toiminnan
+mahdollista hyötyä. Kriittistä Q-oppimisessa on Q-arvon päivittäminen
+toiminnasta saadun palautteen avulla; Tämä on menetelmä tapa oppia optimaalinen
+toimintatapa ympäristössään.
+
 \subsection{Datan tehokas yhdistäminen vahvistusoppimisen avulla}
 
 Yksinkertainen algoritmi datan yhdistämiseen anturiverkossa on niin sanottu
@@ -101,6 +118,35 @@ naapurit pystyvät luotettavimmin lähettämään dataa myös eteenpäin.
 \subsection{Vahvistusoppimisen hyödyntäminen sopeutuvassa anturiverkossa}
 
 \TODO{Selitystä Arya2015 tekstistä}
+
+Kuten datafuusiossa, myös artikkelissa~\cite{Arya2015} käytetään hyväksi
+vahvistusoppimista tehokkaan reititysprotokollan luomiseksi. Kuten datafuusioon
+keskittyvän algoritmin kanssa, sopeutuvan reitityksen algoritmi pyrkii
+huomioimaan noden naapureiden luotettavuutta. Kyseinen algoritmi ottaa
+kuitenkin myös huomioon muita muuttujia, kuten vastaanottajan akkutilanteen.
+Lisäksi tässä algoritmissa otetaan huomioon koko reitti päämäärään asti, ei
+ainoastaan hyppy naapurille. Myös tässä algoritmissa vastaanottajan ``hyvyys''
+määräytyy sen antaman palautteen mukaan. Yhden noden oppiminen voidaan siis
+kuvata tapahtumaketjuna, jossa se
+\begin{enumerate}
+  \item Valitsee naapureistaan vastaanottajan niiden Q-arvon perusteella
+  \item Lähettää datan eteenpäin valitulle naapurille
+  \item Päivittää naapurin Q-arvon siltä saadun palautteen perusteella
+\end{enumerate}
+Kuvassa~\ref{fig:arya2015_oppiminen} on yksinkertainen
+systeemikuva~\cite{Arya2015} kuvaaman vahvitusoppimista käyttävän algoritmin
+toiminnasta.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\linewidth]{arya2015_oppiminen}
+  \caption{Systeemikuva reititysalgoritmin vahvistusoppimisesta.~\parencite{Arya2015}}
+\label{fig:arya2015_oppiminen}
+\end{figure}
+
+Artikkelissa on myös simuloitu algoritmin toimintaa ja suorituskykyä.
+Kuvassa~\ref{fig:arya2015} näkyy simuloitu tilanne, jossa osa nodeista on
+``kuollut''. Kuollut alue näkyy mustana.
 
 \begin{figure}[h]
   \centering
