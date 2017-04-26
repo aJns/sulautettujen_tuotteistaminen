@@ -6,6 +6,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
 \usepackage{fullpage}
+\usepackage{float}
 
 
 % testing
@@ -14,7 +15,7 @@
 \usepackage{soulutf8}
 
 \graphicspath{{../kuvat/}}
-\usepackage[style=draft]{biblatex}
+\usepackage[style=authoryear, maxcitenames=2]{biblatex}
 \bibliography{sulautettujen-tuotteistaminen}
 
 
@@ -36,6 +37,7 @@ vaikutukset tuotekehityksessä}
 \input{selvitys}
 \input{yhteenveto}
 
+\clearpage{}
 \printbibliography{}
 
 \end{document}
