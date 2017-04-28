@@ -1,0 +1,37 @@
+Esittely
+  - Nimeni
+  - Otsikko
+
+Tiivistettynä mistä työ kertoo
+
+Katsausavainsanoihin ja termeihin
+
+Itse asiaan
+  - Kerrotaan ongelmasta
+    - Modernit verkot dynaamisia
+    - toimivat vaikeissa olosuhteissa
+    - menevät rikki
+    - keräävät paljon dataa
+    - tehonkulutusvaatimukset
+
+  - Vahvitusoppimisella uutta puhtia
+    - Mahdollistaa joustavan ja tehokkaan reitityksen
+    - Verkon solmujen ei tarvitse tietää muuta kuin naapurinsa
+  
+  - Q-oppiminen
+    - Löytää optimaalisen toimintatavan 
+    - perustuu tiloihin ja toimintoihin
+    - ottaa huomioon myös tulevaisuuden
+      - valitsee toiminnan jolla korkein pitkän ajan palkinto
+
+  - Toteutuksia
+    - Ensimmäinen algoritmi tähtää datafuusioon
+      - Tarkoitettu esim droneverkolle, jossa tarkoituksena on kerätä data
+        yhteen, jotta sen perusteella voidaan tehdä päätöksiä
+      - Kuva
+      - Path reinforcement
+        - Kun saadaan ensimmäisen kerran dataa tapahtumasta x
+
+    - Toisen tarkoitus olla mahdollisimman luottettava, ja ottaa huomioon myös
+      esim virrankulutuksen
+
