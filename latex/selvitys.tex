@@ -106,11 +106,7 @@ päätyy samalle solmulle on korkeampi. Algoritmi käyttää kuitenkin
 vahvistusoppimista hyväkseen opettemalla solmuille toiminnan myötä mitkä
 naapurit pystyvät luotettavimmin lähettämään dataa myös eteenpäin.
 
-\TODO{Lisää selitystä path learningista}
-
 \subsection{Vahvistusoppimisen hyödyntäminen sopeutuvassa anturiverkossa}
-
-\TODO{Selitystä Arya2015 tekstistä}
 
 Kuten datafuusiossa, myös artikkelissa~\cite{Arya2015} käytetään hyväksi
 vahvistusoppimista tehokkaan reititysprotokollan luomiseksi. Kuten datafuusioon
@@ -129,6 +125,28 @@ kuvata tapahtumaketjuna, jossa se
 Kuvassa~\ref{fig:arya2015_oppiminen} on yksinkertainen
 systeemikuva~\cite{Arya2015} kuvaaman vahvitusoppimista käyttävän algoritmin
 toiminnasta.
+
+Luotettavan reitityksen lisäksi kyseisen algoritmin keskeisiä päämääriä on
+tunnistaa reiät anturiverkon kattavuudessa. Reiät kattavuudessa syntyvät kun
+antureita vioittuu tai ne eivät jostain muusta syystä pysty keräämään tai
+reitittämään dataa tarpeeksi hyvin. Tämän seurauksena verkkoon muodostuu
+``reikä'', jonka läpi ei voi lähettää dataa, vaan tiedonsiirron täytyy mukautua
+sen ympärille. Reiän havaitseminen on siis tärkeää optimaalisen reitityksen
+kannalta. Useimmissa anturiverkon sovelluksissa on myös erittäin hyödyllistä
+olla tietoinen miltä alueilta ei saada tietoa. Myös tämän takia on siis tärkeää
+havaita verkon reiät.
+
+Jotta reikiä voidaan löytää täytyy ensin etsiä optimaalinen reititys olemassa
+olevalle verkolle. Tämä tapahtuu edellä kuvatulla tavalla. Aluksi verkon nielut
+myös pyytävät antureita ja muita solmuja lähettämään itsestään dataa verkon
+yli, jotta optimaalinen reititys löytyisi mahdollisimman nopeasti; Verkon
+reitityshän perustuu vahvistusoppimiseen, joten optimaalista reittiä ei saada
+selville ilman että tiedonsiirtoa kokeillaan. Kun optimaalinen reititys on
+löydetty, voidaan ruveta havaitsemaan reikiä. Jos solmu itse havaitsee
+vioittuneensa se pyrkii lähettämään viestin tilastaan. Tämän viestin avulla sen
+naapurit voivat päivittää omat tietonsa kyseisestä solmusta. Tämän lisäksi
+tukiasema ajaa säännöllisesti algoritmia jonka on tarkoitus havaita reiät
+joista solmut itse eivät ole ilmoittaneet.
 
 \begin{figure}[h]
   \centering
