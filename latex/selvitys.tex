@@ -48,9 +48,15 @@ pääasiassa etsimään verkon reikiä ja toinen pyrkii optimoimaan datafuusiota
 
 Vahvistusoppimisessa voidaan ajatella olevan kolme komponenttia
 \begin{description}
-  \item[Agent, toimija] 
-  \item[Action, toiminta] 
-  \item[Environment, ympäristö] 
+  \item[Agent, toimija] on vahvistusoppimisen opetuksen kohde. Esimerkiksi
+    robotti, jonka tulee oppia nopein reitti päämääräänsä.
+  \item[Action, toiminta] on jotain mitä toimija voi tehdä. Esimerkiksi ``liiku
+    pohjoisessa olevaan huoneeseen''.
+  \item[Environment, ympäristö] vaikuttaa toimijan mahdollisiin toimintoihin ja
+    niiden onnistumiseen. Toimintojen hyöty voi olla erittäin riippuvainen
+    toimintaympäristöstä. Edelliseen esimerkkiin liittyen liikkuminen
+    pohjoiseen ei välttämättä ole aina paras toiminto. Pohjoiseen vievä reitti
+    voi olla esimerkiksi umpikuja.
 \end{description}
 Kuten kappaleessa~\ref{sec:terms} jo sanottiin, vahvistusoppimisessa oppijan,
 eli toimijan, tulee löytää ympäristössään optimaalinen toiminta. Se löytää, tai
@@ -145,7 +151,7 @@ reitittämään dataa tarpeeksi hyvin. Tämän seurauksena verkkoon muodostuu
 ``reikä'', jonka läpi ei voi lähettää dataa, vaan tiedonsiirron täytyy mukautua
 sen ympärille. Reiän havaitseminen on siis tärkeää optimaalisen reitityksen
 kannalta. Useimmissa anturiverkon sovelluksissa on myös erittäin hyödyllistä
-olla tietoinen miltä alueilta ei saada tietoa. Myös tämän takia on siis tärkeää
+olla tietoinen miltä alueilta ei saada tietoa; Myös tämän takia on tärkeää
 havaita verkon reiät.
 
 Jotta reikiä voidaan löytää täytyy ensin etsiä optimaalinen reititys olemassa
