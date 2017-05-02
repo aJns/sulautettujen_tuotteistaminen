@@ -1,7 +1,4 @@
-\section{Kirjallisuusselvitys}
-
-\subsection{Artikkeleiden keskeiset ongelmat}
-\TODO{Selitä tarkasti mitä ongelmaa artikkelit ryhtyvät ratkaisemaan}
+\section{Modernien anturiverkkojen tiedonsiirto-ongelmat}
 
 Anturiverkkojen toimintaolosuhteista johtuen verkon yhteydet ovat muuttuvia ja
 ennalta-arvaamattomia. Usein verkon yksittäisillä antureilla ei ole tietoa
@@ -9,6 +6,13 @@ verkon koostumuksesta sen välittömien naapureiden lisäksi. Siksi
 reititysprotokollien täytyy pystyä sopeutumaan muuttuviin tilanteisiin
 mahdollisimman vähällä informaatiolla itse verkosta.
 
+Ensimmäinen artikkeli keskittyy anturiverkkojen keräämän datan tehokkaaseen
+yhdistämiseen, eli datafuusioon. Toinen taas pyrkii kehittämään
+reititysprotokollan joka on robusti ja pystyy mukautumaan antureiden
+tuhoutumisesta johtuviin muutoksiin. Anturiverkon määritelmässä sanottiin että
+verkko koostuu toisiinsa yhdistetyistä antureista.
+
+\subsection{Datafuusio}
 Artikkelissa~\cite{Yu2006} keskeistä on anturien keräämän datan fuusio.
 Datafuusio tarkoittaa toisiinsa liittyvän datan liittämistä yhteen. Artikkeli
 käyttää esimerkkinä UAV:sta koostuvaa anturiverkkoa, joissa jokaisella
@@ -16,23 +20,132 @@ yksittäisellä UAV:lla on matala varmuus kokonaistilanteesta. Datafuusio on
 tärkeää jotta verkolla on vahva käsitys tilanteesta jonka avulla se voi
 suunnitella toimintaansa.
 
-Anturiverkon osien, eli ``nodejen'' kuolemat ovat ongelma jonka verkon täytyy
-pystyä kestämään ja käsittelemään. Kuolema tarkoittaa tässä kontekstissa mitä
-tahansa tilannetta jossa node on toimintakyvytön tai sen toimintakyky on niin
-huono että siitä ei ole hyötyä verkossa. Artikkelissa~\cite{Arya2015} esitelty
-algoritmi pyrkii etsimään nodejen kuolemista syntyviä ``reikiä'' ja reitittämään
-data optimaalisesti ne huomioon ottaen.
+Datafuusio toimii niin että toisiinsa liittyvä data koitetaan kerätä yhteen.
+Verkon solmut lähettävät dataa eteenpäin kunnes jollakin solmulla on tarpeeksi
+paljon dataa, jolloin se lopettaa datan eteenpäinlähetyksen ja rupeaa
+prosessoimaan dataa ja tekemään sen avulla päätöksiä.
+
+\subsection{Luotettava tiedonsiirto anturiverkoissa}
+Anturiverkon solmujen kuolemat ovat ongelma jonka verkon täytyy pystyä
+kestämään ja käsittelemään. Kuolema tarkoittaa tässä kontekstissa mitä tahansa
+tilannetta jossa solmu on toimintakyvytön tai sen toimintakyky on niin huono
+että siitä ei ole hyötyä verkossa. Artikkelissa~\cite{Arya2015} esitelty
+algoritmi pyrkii etsimään solmujen kuolemista syntyviä ``reikiä'' ja
+reitittämään data optimaalisesti ne huomioon ottaen.
+
+\TODO{Ehkä yksi kappale lisää tähän? Tai jos ei niin sitten yhdistä toiseen
+sektioon}
 
 \subsection{Muita anturiverkkojen reititysalgoritmeja}
 \TODO{Kerro joistain muista reititysprotokollista, ja siitä miksi ne eivät
 sovellu kuitenkaan tässä esitettyihin ongelmiin}
 
-\subsection{Artikkeleiden tarjoamat ratkaisut}
-\TODO{Selitä tarkasti miten em ongelma ratkaistaan}
+\section{Vahvistumisoppiminen anturiverkojen tiedonsiirrossa}
 
 Kummatkin artikkelit siis ryhtyvät ratkaisemaan anturiverkkojen tiedonsiirron
 reitityksen optimointia. Molemmat myös pyrkivät löytämään nopeita ja
-luotettavia yhteyksiä nodejen väleille. Ensimmäinen kuitenkin pyrkii pääasiassa
-etsimään verkon reikiä ja toinen pyrkii optimoimaan datafuusiota.
+luotettavia yhteyksiä solmujen väleille. Ensimmäinen kuitenkin pyrkii
+pääasiassa etsimään verkon reikiä ja toinen pyrkii optimoimaan datafuusiota.
 
+\TODO{Mitä vahvistusoppiminen ja tarkemmin sanottuna Q-learning on?}
+
+Vahvistusoppiminen blaa
+
+``Q-learning'' tai Q-oppiminen on yksi vahvistusoppimisen menetelmä. Menetelmä
+ei vaadi tarkkaa mallia ympäristöstä, ja siten soveltuu lähes mihin tahansa
+vahvistusoppimisongelmaan. Q-oppimisisessa on kolme komponenttia
+\begin{description}
+  \item[Agent, toimija] 
+  \item[Action, toiminta] 
+  \item[Environment, ympäristö] 
+\end{description}
+
+Kaikilla toiminnoilla on joku hinta. Q-oppimisessa tätä hintaa kuvaa Q-arvo.
+Q-arvo on matemaattisesti toiminnan hinta, mutta se kuvaa myös toiminnan
+mahdollista hyötyä. Kriittistä Q-oppimisessa on Q-arvon päivittäminen
+toiminnasta saadun palautteen avulla; Tämä on menetelmä tapa oppia optimaalinen
+toimintatapa ympäristössään.
+
+\subsection{Datan tehokas yhdistäminen vahvistusoppimisen avulla}
+
+Yksinkertainen algoritmi datan yhdistämiseen anturiverkossa on niin sanottu
+``path reinforcement'' algoritmi, jonka toimintaa havainnollistaa
+kuva~\ref{fig:yu2006}. Kun algoritmi ensimmäisen kerran saa dataa tietystä
+tapahtumasta, se lähettää sen satunnaiselle naapurille eteenpäin. Kun se saa
+samasta tapahtumasta lisää dataa, se lähettää sen eteenpäin sille naapurille
+jolle se viimeksi lähetti dataa kyseisestä tapahtumasta.  Tapahtuman ja datan
+samankaltaisuuden tai liittyvyyden määrittely on oma ongelmansa johon
+artikkelissa~\cite{Yu2006} ei oteta kantaa. Algoritmin ideana on että jos data
+reititetään aina samaa reittiä pitkin, todennäköisyys että jollekin reitin
+solmulle tulee tarpeeksi dataa kasvaa.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\linewidth]{yu2006_kuva}
+  \caption{Havainnekuva siitä kuinka ``path reinforcement'' algoritmi pyrkii
+    lähettämään toisiinsa liittyvän datan samalle solmulle.~\parencite{Yu2006}}
+\label{fig:yu2006}
+\end{figure}
+
+Vaikka kyseinen algoritmi edistää datafuusiota melko tehokkaasti ilman kattavaa
+tietoa anturiverkosta, sen ongelmana on että se ei ota huomioon verkon
+yhteyksien laatua, tai edes sitä meneekö tieto perille. Eli se pyrkii
+lähettämään dataa samalle naapurille vaikka yhteys olisi huono tai jopa
+olematon. Ongelma voidaan korjata lähettämällä data uudestaan jos vikoja tai
+huonoja yhteyksia havaitaan verkossa. Uudelleenlähetys kuitenkin laskee
+algoritmin tehokkuutta melko paljon, koska uuden naapurin valinta on
+satunnaista jolloin data saatetaan lähettää uudestaan vialliselle naapurille,
+tai muuten epäoptimaaliselle naapurille.
+
+Tehokkuutta voidaan parantaa mallintamalla naapureiden luotettavuutta jollain
+tavalla. Tässä päästäänkin artikkelin~\cite{Yu2006} keskeiseen algoritmiin,
+jota tekijät itse kutsuvat ``path learning'' algoritmiksi. Perusidea datan
+yhdistämisen kannalta on sama kuin path reinforcementissa; Samankaltainen data
+pyritään reitittämään samaa reittiä pitkin, jotta todennäköisyys että data
+päätyy samalle solmulle on korkeampi. Algoritmi käyttää kuitenkin
+vahvistusoppimista hyväkseen opettemalla solmuille toiminnan myötä mitkä
+naapurit pystyvät luotettavimmin lähettämään dataa myös eteenpäin.
+
+\TODO{Lisää selitystä path learningista}
+
+\subsection{Vahvistusoppimisen hyödyntäminen sopeutuvassa anturiverkossa}
+
+\TODO{Selitystä Arya2015 tekstistä}
+
+Kuten datafuusiossa, myös artikkelissa~\cite{Arya2015} käytetään hyväksi
+vahvistusoppimista tehokkaan reititysprotokollan luomiseksi. Kuten datafuusioon
+keskittyvän algoritmin kanssa, sopeutuvan reitityksen algoritmi pyrkii
+huomioimaan solmun naapureiden luotettavuutta. Kyseinen algoritmi ottaa
+kuitenkin myös huomioon muita muuttujia, kuten vastaanottajan akkutilanteen.
+Lisäksi tässä algoritmissa otetaan huomioon koko reitti päämäärään asti, ei
+ainoastaan hyppy naapurille. Myös tässä algoritmissa vastaanottajan ``hyvyys''
+määräytyy sen antaman palautteen mukaan. Yhden solmun oppiminen voidaan siis
+kuvata tapahtumaketjuna, jossa se
+\begin{enumerate}
+  \item Valitsee naapureistaan vastaanottajan niiden Q-arvon perusteella
+  \item Lähettää datan eteenpäin valitulle naapurille
+  \item Päivittää naapurin Q-arvon siltä saadun palautteen perusteella
+\end{enumerate}
+Kuvassa~\ref{fig:arya2015_oppiminen} on yksinkertainen
+systeemikuva~\cite{Arya2015} kuvaaman vahvitusoppimista käyttävän algoritmin
+toiminnasta.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\linewidth]{arya2015_oppiminen}
+  \caption{Systeemikuva reititysalgoritmin vahvistusoppimisesta.~\parencite{Arya2015}}
+\label{fig:arya2015_oppiminen}
+\end{figure}
+
+Artikkelissa on myös simuloitu algoritmin toimintaa ja suorituskykyä.
+Kuvassa~\ref{fig:arya2015} näkyy simuloitu tilanne, jossa osa solmuista on
+``kuollut''. Kuollut alue näkyy mustana.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\linewidth]{arya2015_kuva}
+  \caption{Simulaatiokuva artikkelissa~\cite{Arya2015} määritellystä
+algoritmista. Kuvassa näkyy anturien kuolemasta syntynyt reikä mustalla.}
+\label{fig:arya2015}
+\end{figure}
 

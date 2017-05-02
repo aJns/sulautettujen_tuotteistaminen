@@ -6,6 +6,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
 \usepackage{fullpage}
+\usepackage{float}
 
 
 % testing
@@ -14,11 +15,11 @@
 \usepackage{soulutf8}
 
 \graphicspath{{../kuvat/}}
-\usepackage[style=draft]{biblatex}
+\usepackage[style=authoryear, maxcitenames=2]{biblatex}
 \bibliography{sulautettujen-tuotteistaminen}
 
 
-\newcommand{\TODO}[1]{\hl{\textbf{TODO:}\quad#1}}
+\newcommand{\TODO}[1]{\noindent{\hl{\textbf{TODO:}\quad#1}}}
 
 \author{Jonas Nikula, 240497}
 \title{Vahvistusoppimisen sovellukset langattomissa anturiverkoissa ja sen
@@ -36,6 +37,7 @@ vaikutukset tuotekehityksessä}
 \input{selvitys}
 \input{yhteenveto}
 
+\clearpage{}
 \printbibliography{}
 
 \end{document}
