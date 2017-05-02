@@ -9,8 +9,7 @@ mahdollisimman vähällä informaatiolla itse verkosta.
 Ensimmäinen artikkeli keskittyy anturiverkkojen keräämän datan tehokkaaseen
 yhdistämiseen, eli datafuusioon. Toinen taas pyrkii kehittämään
 reititysprotokollan joka on robusti ja pystyy mukautumaan antureiden
-tuhoutumisesta johtuviin muutoksiin. Anturiverkon määritelmässä sanottiin että
-verkko koostuu toisiinsa yhdistetyistä antureista.
+tuhoutumisesta johtuviin muutoksiin.
 
 \subsection{Datafuusio}
 Artikkelissa~\cite{Yu2006} keskeistä on anturien keräämän datan fuusio.
@@ -33,12 +32,12 @@ että siitä ei ole hyötyä verkossa. Artikkelissa~\cite{Arya2015} esitelty
 algoritmi pyrkii etsimään solmujen kuolemista syntyviä ``reikiä'' ja
 reitittämään data optimaalisesti ne huomioon ottaen.
 
-\TODO{Ehkä yksi kappale lisää tähän? Tai jos ei niin sitten yhdistä toiseen
-sektioon}
+% \TODO{Ehkä yksi kappale lisää tähän? Tai jos ei niin sitten yhdistä toiseen
+% sektioon}
 
-\subsection{Muita anturiverkkojen reititysalgoritmeja}
-\TODO{Kerro joistain muista reititysprotokollista, ja siitä miksi ne eivät
-sovellu kuitenkaan tässä esitettyihin ongelmiin}
+% \subsection{Muita anturiverkkojen reititysalgoritmeja}
+% \TODO{Kerro joistain muista reititysprotokollista, ja siitä miksi ne eivät
+% sovellu kuitenkaan tässä esitettyihin ongelmiin}
 
 \section{Vahvistumisoppiminen anturiverkojen tiedonsiirrossa}
 
@@ -47,24 +46,31 @@ reitityksen optimointia. Molemmat myös pyrkivät löytämään nopeita ja
 luotettavia yhteyksiä solmujen väleille. Ensimmäinen kuitenkin pyrkii
 pääasiassa etsimään verkon reikiä ja toinen pyrkii optimoimaan datafuusiota.
 
-\TODO{Mitä vahvistusoppiminen ja tarkemmin sanottuna Q-learning on?}
-
-Vahvistusoppiminen blaa
-
-``Q-learning'' tai Q-oppiminen on yksi vahvistusoppimisen menetelmä. Menetelmä
-ei vaadi tarkkaa mallia ympäristöstä, ja siten soveltuu lähes mihin tahansa
-vahvistusoppimisongelmaan. Q-oppimisisessa on kolme komponenttia
+Vahvistusoppimisessa voidaan ajatella olevan kolme komponenttia
 \begin{description}
   \item[Agent, toimija] 
   \item[Action, toiminta] 
   \item[Environment, ympäristö] 
 \end{description}
+Kuten kappaleessa~\ref{sec:terms} jo sanottiin, vahvistusoppimisessa oppijan,
+eli toimijan, tulee löytää ympäristössään optimaalinen toiminta. Se löytää, tai
+oppii tämän optimaalisen toiminnan kokeilemalla eri toimintoja. Tehdessään
+toiminnon, se saa siitä jollain tavalla palautetta, joka vaikuttaa siihen minkä
+toiminnon se valitsee ensi kerralla; Jos palaute oli positiivista, se valitsee
+saman toiminnon. Jos taas negatiivista, se luultavasti kokeilee muuta
+toimintoa.
 
-Kaikilla toiminnoilla on joku hinta. Q-oppimisessa tätä hintaa kuvaa Q-arvo.
-Q-arvo on matemaattisesti toiminnan hinta, mutta se kuvaa myös toiminnan
-mahdollista hyötyä. Kriittistä Q-oppimisessa on Q-arvon päivittäminen
-toiminnasta saadun palautteen avulla; Tämä on menetelmä tapa oppia optimaalinen
-toimintatapa ympäristössään.
+``Q-learning'' tai Q-oppiminen on yksi vahvistusoppimisen menetelmä. Menetelmä
+ei vaadi tarkkaa mallia ympäristöstä, ja siten soveltuu lähes mihin tahansa
+vahvistusoppimisongelmaan.  Q-oppimisessa toimijan potentiaalisilla
+toiminnoilla toimitaympäristössään on joku hyöty, eli Q-arvo. Kriittistä
+Q-oppimisessa on Q-arvon päivittäminen toiminnasta saadun palautteen avulla;
+Tämä on menetelmän tapa oppia optimaalinen toimintatapa ympäristössä.
+Q-oppiminen pyrkii ottamaan huomioon myös ajan. Ajan huomioiminen on tärkeää
+koska varsinkin reaalimaailmassa useimmat toiminnot eivät ole heti palkitsevia,
+vaan ne mahdollistavat tulevaisuudessa toimintoja jotka ovat arvokkaita.
+Toiminnan lopullinen hinta määräytyy siis nykyisen tilan lisäksi tiloista
+joihin toiminto johtaa.~\parencite{Kaelbling1996}
 
 \subsection{Datan tehokas yhdistäminen vahvistusoppimisen avulla}
 
@@ -105,6 +111,12 @@ pyritään reitittämään samaa reittiä pitkin, jotta todennäköisyys että d
 päätyy samalle solmulle on korkeampi. Algoritmi käyttää kuitenkin
 vahvistusoppimista hyväkseen opettemalla solmuille toiminnan myötä mitkä
 naapurit pystyvät luotettavimmin lähettämään dataa myös eteenpäin.
+
+Artikkelissa~\cite{Yu2006} tehtyjen simuulatioiden perusteella kyseinen
+algoritmi parhaimmillaan kaksinkertaistaa datafuusion todennäköisyyden
+verrattuna ``random walks'' algoritmiin, jossa vastaanottaja siis valitaan
+satunnaisesti. Algoritmi kestää myös hyvin solmujen tuhoutumista; Tilanteessa
+jossa jopa 50\% solmuista tuhoutui, datafuusion todennäköisyys oli 70\%.
 
 \subsection{Vahvistusoppimisen hyödyntäminen sopeutuvassa anturiverkossa}
 
@@ -157,7 +169,7 @@ joista solmut itse eivät ole ilmoittaneet.
 
 Artikkelissa on myös simuloitu algoritmin toimintaa ja suorituskykyä.
 Kuvassa~\ref{fig:arya2015} näkyy simuloitu tilanne, jossa osa solmuista on
-``kuollut''. Kuollut alue näkyy mustana.
+``kuollut''. Kuolleiden solmujen seurauksena syntynyt reikä näkyy mustana.
 
 \begin{figure}[h]
   \centering
