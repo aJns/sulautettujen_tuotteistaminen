@@ -1,4 +1,5 @@
 \section{Modernien anturiverkkojen tiedonsiirto-ongelmat}
+\label{sec:problem}
 
 Anturiverkkojen toimintaolosuhteista johtuen verkon yhteydet ovat muuttuvia ja
 ennalta-arvaamattomia. Usein verkon yksittäisillä antureilla ei ole tietoa
@@ -7,19 +8,20 @@ reititysprotokollien täytyy pystyä sopeutumaan muuttuviin tilanteisiin
 mahdollisimman vähällä informaatiolla itse verkosta.
 
 Ensimmäinen artikkeli keskittyy anturiverkkojen keräämän datan tehokkaaseen
-yhdistämiseen, eli datafuusioon. Toinen taas pyrkii kehittämään
+yhdistämiseen (engl.\ data fusion). Toinen taas pyrkii kehittämään
 reititysprotokollan joka on robusti ja pystyy mukautumaan antureiden
 tuhoutumisesta johtuviin muutoksiin.
 
-\subsection{Datafuusio}
-Artikkelissa~\cite{Yu2006} keskeistä on anturien keräämän datan fuusio.
-Datafuusio tarkoittaa toisiinsa liittyvän datan liittämistä yhteen. Artikkeli
+\subsection{Datan yhdistäminen}
+Artikkelissa~\cite{Yu2006} keskeistä on anturien keräämän datan yhdistäminen.
+Datan yhdistäminen tarkoittaa että toisiinsa liittyvä data kerätään yhteen
+kokonaiskuvan saamiseksi. Artikkeli
 käyttää esimerkkinä UAV:sta koostuvaa anturiverkkoa, joissa jokaisella
-yksittäisellä UAV:lla on matala varmuus kokonaistilanteesta. Datafuusio on
+yksittäisellä UAV:lla on matala varmuus kokonaistilanteesta. Datan yhdistäminen on
 tärkeää jotta verkolla on vahva käsitys tilanteesta jonka avulla se voi
 suunnitella toimintaansa.
 
-Datafuusio toimii niin että toisiinsa liittyvä data koitetaan kerätä yhteen.
+Datan yhdistäminen toimii niin että toisiinsa liittyvä data koitetaan kerätä yhteen.
 Verkon solmut lähettävät dataa eteenpäin kunnes jollakin solmulla on tarpeeksi
 paljon dataa, jolloin se lopettaa datan eteenpäinlähetyksen ja rupeaa
 prosessoimaan dataa ja tekemään sen avulla päätöksiä.
@@ -29,7 +31,7 @@ Anturiverkon solmujen kuolemat ovat ongelma jonka verkon täytyy pystyä
 kestämään ja käsittelemään. Kuolema tarkoittaa tässä kontekstissa mitä tahansa
 tilannetta jossa solmu on toimintakyvytön tai sen toimintakyky on niin huono
 että siitä ei ole hyötyä verkossa. Artikkelissa~\cite{Arya2015} esitelty
-algoritmi pyrkii etsimään solmujen kuolemista syntyviä ``reikiä'' ja
+algoritmi pyrkii etsimään solmujen kuolemista syntyviä reikiä ja
 reitittämään data optimaalisesti ne huomioon ottaen.
 
 % \TODO{Ehkä yksi kappale lisää tähän? Tai jos ei niin sitten yhdistä toiseen
@@ -40,19 +42,21 @@ reitittämään data optimaalisesti ne huomioon ottaen.
 % sovellu kuitenkaan tässä esitettyihin ongelmiin}
 
 \section{Vahvistumisoppiminen anturiverkojen tiedonsiirrossa}
+\label{sec:solution}
 
 Kummatkin artikkelit siis ryhtyvät ratkaisemaan anturiverkkojen tiedonsiirron
 reitityksen optimointia. Molemmat myös pyrkivät löytämään nopeita ja
 luotettavia yhteyksiä solmujen väleille. Ensimmäinen kuitenkin pyrkii
-pääasiassa etsimään verkon reikiä ja toinen pyrkii optimoimaan datafuusiota.
+pääasiassa etsimään verkon reikiä ja toinen pyrkii optimoimaan datan
+yhdistämistä.
 
 Vahvistusoppimisessa voidaan ajatella olevan kolme komponenttia
 \begin{description}
-  \item[Agent, toimija] on vahvistusoppimisen opetuksen kohde. Esimerkiksi
+  \item[Toimija (engl.\ agent)] on vahvistusoppimisen opetuksen kohde. Esimerkiksi
     robotti, jonka tulee oppia nopein reitti päämääräänsä.
-  \item[Action, toiminta] on jotain mitä toimija voi tehdä. Esimerkiksi ``liiku
+  \item[Toiminta (engl.\ action)] on jotain mitä toimija voi tehdä. Esimerkiksi ``liiku
     pohjoisessa olevaan huoneeseen''.
-  \item[Environment, ympäristö] vaikuttaa toimijan mahdollisiin toimintoihin ja
+  \item[Ympäristö (engl.\ environment)] vaikuttaa toimijan mahdollisiin toimintoihin ja
     niiden onnistumiseen. Toimintojen hyöty voi olla erittäin riippuvainen
     toimintaympäristöstä. Edelliseen esimerkkiin liittyen liikkuminen
     pohjoiseen ei välttämättä ole aina paras toiminto. Pohjoiseen vievä reitti
@@ -66,7 +70,7 @@ toiminnon se valitsee ensi kerralla; Jos palaute oli positiivista, se valitsee
 saman toiminnon. Jos taas negatiivista, se luultavasti kokeilee muuta
 toimintoa.
 
-``Q-learning'' tai Q-oppiminen on yksi vahvistusoppimisen menetelmä. Menetelmä
+Q-oppiminen (engl.\ Q-learning) on yksi vahvistusoppimisen menetelmä. Menetelmä
 ei vaadi tarkkaa mallia ympäristöstä, ja siten soveltuu lähes mihin tahansa
 vahvistusoppimisongelmaan.  Q-oppimisessa toimijan potentiaalisilla
 toiminnoilla toimitaympäristössään on joku hyöty, eli Q-arvo. Kriittistä
@@ -80,12 +84,14 @@ joihin toiminto johtaa.~\parencite{Kaelbling1996}
 
 \subsection{Datan tehokas yhdistäminen vahvistusoppimisen avulla}
 
-Yksinkertainen algoritmi datan yhdistämiseen anturiverkossa on niin sanottu
-``path reinforcement'' algoritmi, jonka toimintaa havainnollistaa
-kuva~\ref{fig:yu2006}. Kun algoritmi ensimmäisen kerran saa dataa tietystä
+Yksinkertainen algoritmi datan yhdistämiseen anturiverkossa on polunvahvistusalgoritmi
+(engl.\ path reinforcement).
+Kun algoritmi ensimmäisen kerran saa dataa tietystä
 tapahtumasta, se lähettää sen satunnaiselle naapurille eteenpäin. Kun se saa
 samasta tapahtumasta lisää dataa, se lähettää sen eteenpäin sille naapurille
-jolle se viimeksi lähetti dataa kyseisestä tapahtumasta.  Tapahtuman ja datan
+jolle se viimeksi lähetti dataa kyseisestä tapahtumasta.  Kuvassa~\ref{fig:yu2006} on
+havainnollistettu sitä kuinka polunvahvistusalgoritmi pyrkii lähettämään
+toisiinsa liittyvän datan samalle solmulle. Tapahtuman ja datan
 samankaltaisuuden tai liittyvyyden määrittely on oma ongelmansa johon
 artikkelissa~\cite{Yu2006} ei oteta kantaa. Algoritmin ideana on että jos data
 reititetään aina samaa reittiä pitkin, todennäköisyys että jollekin reitin
@@ -94,12 +100,11 @@ solmulle tulee tarpeeksi dataa kasvaa.
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.8\linewidth]{yu2006_kuva}
-  \caption{Havainnekuva siitä kuinka ``path reinforcement'' algoritmi pyrkii
-    lähettämään toisiinsa liittyvän datan samalle solmulle.~\parencite{Yu2006}}
+  \caption{Polunvahvistusalgoritmin havainnekuva.~\parencite{Yu2006}}
 \label{fig:yu2006}
 \end{figure}
 
-Vaikka kyseinen algoritmi edistää datafuusiota melko tehokkaasti ilman kattavaa
+Vaikka kyseinen algoritmi edistää datan yhdistämistä melko tehokkaasti ilman kattavaa
 tietoa anturiverkosta, sen ongelmana on että se ei ota huomioon verkon
 yhteyksien laatua, tai edes sitä meneekö tieto perille. Eli se pyrkii
 lähettämään dataa samalle naapurille vaikka yhteys olisi huono tai jopa
@@ -111,28 +116,30 @@ tai muuten epäoptimaaliselle naapurille.
 
 Tehokkuutta voidaan parantaa mallintamalla naapureiden luotettavuutta jollain
 tavalla. Tässä päästäänkin artikkelin~\cite{Yu2006} keskeiseen algoritmiin,
-jota tekijät itse kutsuvat ``path learning'' algoritmiksi. Perusidea datan
-yhdistämisen kannalta on sama kuin path reinforcementissa; Samankaltainen data
-pyritään reitittämään samaa reittiä pitkin, jotta todennäköisyys että data
-päätyy samalle solmulle on korkeampi. Algoritmi käyttää kuitenkin
-vahvistusoppimista hyväkseen opettemalla solmuille toiminnan myötä mitkä
-naapurit pystyvät luotettavimmin lähettämään dataa myös eteenpäin.
+jota tekijät itse kutsuvat polunoppimisalgoritmiksi (engl.\ path learning).
+Perusidea datan yhdistämisen kannalta on sama kuin polunvahvistuksessakin;
+Samankaltainen data pyritään reitittämään samaa reittiä pitkin, jotta
+todennäköisyys että data päätyy samalle solmulle on korkeampi. Algoritmi
+käyttää kuitenkin vahvistusoppimista hyväkseen opettemalla solmuille toiminnan
+myötä mitkä naapurit pystyvät luotettavimmin lähettämään dataa myös eteenpäin.
 
 Artikkelissa~\cite{Yu2006} tehtyjen simuulatioiden perusteella kyseinen
-algoritmi parhaimmillaan kaksinkertaistaa datafuusion todennäköisyyden
-verrattuna ``random walks'' algoritmiin, jossa vastaanottaja siis valitaan
-satunnaisesti. Algoritmi kestää myös hyvin solmujen tuhoutumista; Tilanteessa
-jossa jopa 50\% solmuista tuhoutui, datafuusion todennäköisyys oli 70\%.
+algoritmi parhaimmillaan kaksinkertaistaa datan yhdistymisen todennäköisyyden
+verrattuna satunnaiskävely (engl.\ random walks) algoritmiin, jossa
+vastaanottaja siis valitaan satunnaisesti. Algoritmi kestää myös hyvin solmujen
+tuhoutumista; Tilanteessa jossa jopa 50\% solmuista tuhoutui, datan
+yhdistymisen todennäköisyys oli 70\%.
 
 \subsection{Vahvistusoppimisen hyödyntäminen sopeutuvassa anturiverkossa}
 
-Kuten datafuusiossa, myös artikkelissa~\cite{Arya2015} käytetään hyväksi
-vahvistusoppimista tehokkaan reititysprotokollan luomiseksi. Kuten datafuusioon
+Kuten datan yhdistämisessä, myös artikkelissa~\cite{Arya2015} käytetään hyväksi
+vahvistusoppimista tehokkaan reititysprotokollan luomiseksi. Kuten datan
+yhdistämiseen
 keskittyvän algoritmin kanssa, sopeutuvan reitityksen algoritmi pyrkii
 huomioimaan solmun naapureiden luotettavuutta. Kyseinen algoritmi ottaa
 kuitenkin myös huomioon muita muuttujia, kuten vastaanottajan akkutilanteen.
 Lisäksi tässä algoritmissa otetaan huomioon koko reitti päämäärään asti, ei
-ainoastaan hyppy naapurille. Myös tässä algoritmissa vastaanottajan ``hyvyys''
+ainoastaan hyppy naapurille. Myös tässä algoritmissa vastaanottajan hyvyys
 määräytyy sen antaman palautteen mukaan. Yhden solmun oppiminen voidaan siis
 kuvata tapahtumaketjuna, jossa se
 \begin{enumerate}
@@ -148,7 +155,7 @@ Luotettavan reitityksen lisäksi kyseisen algoritmin keskeisiä päämääriä o
 tunnistaa reiät anturiverkon kattavuudessa. Reiät kattavuudessa syntyvät kun
 antureita vioittuu tai ne eivät jostain muusta syystä pysty keräämään tai
 reitittämään dataa tarpeeksi hyvin. Tämän seurauksena verkkoon muodostuu
-``reikä'', jonka läpi ei voi lähettää dataa, vaan tiedonsiirron täytyy mukautua
+reikä, jonka läpi ei voi lähettää dataa, vaan tiedonsiirron täytyy mukautua
 sen ympärille. Reiän havaitseminen on siis tärkeää optimaalisen reitityksen
 kannalta. Useimmissa anturiverkon sovelluksissa on myös erittäin hyödyllistä
 olla tietoinen miltä alueilta ei saada tietoa; Myös tämän takia on tärkeää
@@ -175,13 +182,12 @@ joista solmut itse eivät ole ilmoittaneet.
 
 Artikkelissa on myös simuloitu algoritmin toimintaa ja suorituskykyä.
 Kuvassa~\ref{fig:arya2015} näkyy simuloitu tilanne, jossa osa solmuista on
-``kuollut''. Kuolleiden solmujen seurauksena syntynyt reikä näkyy mustana.
+tuhoutunut. Tuhoutuneiden solmujen seurauksena syntynyt reikä näkyy mustana.
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.8\linewidth]{arya2015_kuva}
-  \caption{Simulaatiokuva artikkelissa~\cite{Arya2015} määritellystä
-algoritmista. Kuvassa näkyy anturien kuolemasta syntynyt reikä mustalla.}
+  \caption{Simulaatiokuva artikkelista~\cite{Arya2015}.}
 \label{fig:arya2015}
 \end{figure}
 
